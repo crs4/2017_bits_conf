@@ -1,0 +1,8 @@
+#!/bin/sh
+set -x
+
+stop-cluster.sh
+/home/cesco/dump/hadoop/sbin/stop-yarn.sh
+/home/cesco/dump/hadoop/sbin/stop-dfs.sh
+mypsh rm -R "/tmp/{cesco,flink,kafka,ref,hadoop,jrapi,jaas,blob,zook,Jetty,lib,yarn}*"
+mypsh rm -R "/scratch{1,2}/cesco*"

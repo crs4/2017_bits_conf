@@ -1,0 +1,23 @@
+parallelism.default: 40
+taskmanager.numberOfTaskSlots: 1
+jobmanager.heap.mb: 5000
+taskmanager.heap.mb: 105000
+# taskmanager.memory.fraction: 0.7
+taskmanager.tmp.dirs: /home/cesco/dump/tmp/flink-tmp
+#taskmanager.tmp.dirs: /tmp/flink-tasktmp
+
+execution-retries.default: 5
+execution-retries.delay: 7s
+
+akka.ask.timeout: 40s
+akka.client.timeout: 80s
+akka.watch.heartbeat.interval: 160s
+akka.framesize: 104857600b
+#env.java.opts: -XX:+UseG1GC -Djava.library.path=/home/cesco/dump/hadoop/lib/native
+env.java.opts: -XX:+UseG1GC
+fs.hdfs.hadoopconf: /home/cesco/dump/hadoop/etc/hadoop
+jobmanager.rpc.address: jic-md01
+jobmanager.rpc.port: 6123
+jobmanager.web.port: 8081
+taskmanager.memory.preallocate: false
+taskmanager.network.numberOfBuffers: 131072 #64738

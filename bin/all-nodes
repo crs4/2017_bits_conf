@@ -1,0 +1,5 @@
+#!/bin/sh
+set -x
+
+xargs -P0 -n1 -I{} ssh -q {} "$*" < ~/nodes.txt
+# awk '{print $1}' ~/.hosts | xargs -P0 -n1 -I{} ssh -q {} "$*"

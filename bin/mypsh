@@ -1,0 +1,5 @@
+#!/bin/sh
+#set -x
+
+# xargs -P0 -n1 -I{} ssh -q {} "$*" < ~/nodes.txt
+echo jic-md01 | cat - /home/cesco/dump/flink/conf/slaves | xargs -P0 -n1 -I{} ssh -q {} "$*"

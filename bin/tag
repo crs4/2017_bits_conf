@@ -1,0 +1,2 @@
+#!/bin/sh
+awk -v h=$HOSTNAME '{print h ": " $0}'
