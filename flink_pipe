@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+
+function log() {
+  echo -e $(date +"%F %T") -- $@ >&2
+}
+
+
+function error() {
+  if [ $# -ge 0 ]; then
+    log "${@}"
+  else
+    log "An error occurred"
+  fi
+  exit 1
+}
+
+if [ $# -ne 6 ]; then
+  echo "USAGE: $(basename $0) <root> <fout> <numTasks> <header> <reference> <properties file>" >&2
+  exit 1
+fi
+
+if [ ! -r "${4/file:\/\//}" ]; then
+  error "Header parameter ${4} isn't a readable file"
+fi
+
+if [ ! -r "${6/file:\/\//}" ]; then
+  error "Properties parameter ${6} isn't a readable file"
+fi
+
+input="${1%%/}/"
+output="${2%%/}/"
+
+log "Starting flink pipeline" >&2
+
+time flink run -c bclconverter.test /JIC/HOME/cesco/code/bclold/bcl-converter-assembly-0.1.jar  \
+  --root "${input}" --fout "${output}" --numTasks "${3}" --header "${4}" --reference "${5}" --properties "${6}"
+exit_code=$?
+
+log "Flink job finished with code ${exit_code}"
+exit ${exit_code}
