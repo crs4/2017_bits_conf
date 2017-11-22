@@ -1,2 +1,3 @@
 #!/bin/sh
-watch -n 3 "mypsh 'free -h | ~/bin/tag | grep Mem' | sort ; mypsh 'df -Th /scratch1 | ~/bin/tag | grep scratch' | sort ; my-cpus ; my-ifs"
+
+watch -n 3 "~cesco/bin/mypsh 'free -h | ~cesco/bin/tag | grep Mem' | sort ; ~cesco/bin/mypsh 'df -Th /scratch1 /scratch2 | ~cesco/bin/tag | grep scratch' | sort ; ~cesco/bin/my-cpus ; ~cesco/bin/my-ifs"

@@ -1,7 +1,9 @@
 #!/bin/sh
 set -x
+set -o errexit
+set -o nounset
 
-hdfs namenode -format
+/home/cesco/dump/hadoop/bin/hdfs namenode -format
 /home/cesco/dump/hadoop/sbin/start-dfs.sh
 #/home/cesco/dump/hadoop/sbin/start-yarn.sh
 #hadoop distcp file:///home/cesco/data/illumina.{tiny,small} /data/
