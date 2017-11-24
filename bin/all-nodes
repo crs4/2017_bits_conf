@@ -1,5 +1,7 @@
 #!/bin/sh
 set -x
 
-xargs -P0 -n1 -I{} ssh -q {} "$*" < ~/nodes.txt
+set -o nounset
+
+cat "${BITSCONF}/master" "${BITSCONF}/slaves" | xargs -P0 -n1 -I{} ssh -q {} "$*"
 # awk '{print $1}' ~/.hosts | xargs -P0 -n1 -I{} ssh -q {} "$*"

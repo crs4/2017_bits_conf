@@ -1,5 +1,13 @@
 #!/bin/sh
-#set -x
+
+set -x
+set -o nounset
 
 # xargs -P0 -n1 -I{} ssh -q {} "$*" < ~/nodes.txt
-echo jic-md01 | cat - /home/cesco/dump/flink/conf/slaves | xargs -P0 -n1 -I{} ssh -q {} "$*"
+
+if [ ! -f"${BITSCONF}/master" -o ! "${BITSCONF}/slaves" ]; then
+  echo "Error: couldn't find master and slaves files in ${BITSCONF}" >&2
+  exit 1
+fi
+
+cat "${BITSCONF}/master" "${BITSCONF}/slaves" | xargs -P0 -n1 -I{} ssh {} "${@}"
