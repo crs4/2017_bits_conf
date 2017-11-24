@@ -3,7 +3,9 @@ taskmanager.numberOfTaskSlots: 1
 jobmanager.heap.mb: 5000
 taskmanager.heap.mb: 105000
 # taskmanager.memory.fraction: 0.7
-taskmanager.tmp.dirs: /home/cesco/dump/tmp/flink-tmp
+#LP taskmanager.tmp.dirs: /home/cesco/dump/tmp/flink-tmp
+taskmanager.tmp.dirs: /scratch1/cesco-flink-tmp:/scratch2/cesco-flink-tmp
+
 #taskmanager.tmp.dirs: /tmp/flink-tasktmp
 
 execution-retries.default: 5
@@ -16,7 +18,7 @@ akka.framesize: 104857600b
 #env.java.opts: -XX:+UseG1GC -Djava.library.path=/home/cesco/dump/hadoop/lib/native
 env.java.opts: -XX:+UseG1GC
 fs.hdfs.hadoopconf: /home/cesco/dump/hadoop/etc/hadoop
-jobmanager.rpc.address: jic-md01
+jobmanager.rpc.address: jic-md17
 jobmanager.rpc.port: 6123
 jobmanager.web.port: 8081
 taskmanager.memory.preallocate: false

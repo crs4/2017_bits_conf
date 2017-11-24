@@ -19,15 +19,15 @@
 <configuration>
   <property>
     <name>dfs.replication</name>
-    <value>1</value>
+    <value>2</value>
   </property>
   <property>
     <name>dfs.namenode.name.dir</name>
-    <value>${my.dir}/dfs/name</value>
+    <value>${scratch.dir1}/dfs/name</value>
   </property>
   <property>
     <name>dfs.datanode.data.dir</name>
-    <value>${my.dir}/dfs/data</value>
+    <value>${scratch.dir1}/dfs/data,${scratch.dir2}/dfs/data</value>
   </property>  
   <property>
     <name>dfs.datanode.max.xcievers</name>

@@ -19,7 +19,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>jic-md01</value>
+    <value>jic-md17</value>
   </property>
   <property>
     <name>yarn.log-aggregation-enable</name>

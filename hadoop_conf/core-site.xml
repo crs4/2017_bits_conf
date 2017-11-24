@@ -19,10 +19,14 @@
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://jic-md01:9000</value>
+    <value>hdfs://jic-md17:9000</value>
   </property>
   <property>
-    <name>my.dir</name>
+    <name>scratch.dir1</name>
     <value>/scratch1/cesco-hadoop</value>
+  </property>
+  <property>
+    <name>scratch.dir2</name>
+    <value>/scratch2/cesco-hadoop</value>
   </property>
 </configuration>
