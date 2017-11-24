@@ -1,6 +1,8 @@
 module load jdk1.8.0_144
 
 export DUMP_DIR=~cesco/dump
+export BITSCONF="${DUMP_DIR}/bits_conf"
+
 echo "Adding "dump" bin directories to PATH"
 export PATH="${DUMP_DIR}/bits_conf/bin:${DUMP_DIR}/hadoop/bin:${DUMP_DIR}/flink/bin:${DUMP_DIR}/kafka/bin:${DUMP_DIR}/hadoop/sbin:~cesco/bin:${PATH}"
 
