@@ -7,6 +7,7 @@ OutputBase="."
 NumNodes=-1
 # The reference must exist on each slave node
 Reference="/tmp/ref/ucsc.hg19.fasta"
+SampleSheetsDir="/u/cesco/dump/sample_sheets"
 
 
 # inside BITSCONF directory
@@ -55,8 +56,9 @@ for run_dir in "${@}"; do
   if [ ! -d "${run_dir}" -o ! -d "${run_dir}/raw" ]; then
     error "Path ${run_dir} doesn't seem to be one of our run directories"
   fi
-  if [ ! -f "${run_dir}/SampleSheet.csv" ]; then
-    error "Missing sample sheet file ${run_dir}/SampleSheet.csv"
+  SampleSheetFile="${SampleSheetsDir}/$(basename ${run_dir}).csv"
+  if [ ! -f "${SampleSheetFile}" ]; then
+    error "Missing sample sheet file ${SampleSheetFile}"
   fi
 done
 
@@ -86,6 +88,8 @@ log "Running workflow on $# run directories"
 
 for run_dir in "${@}"; do
   log "Starting with ${run_dir}"
-  time flink_pipe  "${run_dir}/raw" "${OutputBase}/$(basename "${run_dir}").cram" ${NumNodes} "${HeaderFull}" "${Reference}" "${PropertiesFull}"
+  SampleSheetFile="${SampleSheetsDir}/$(basename ${run_dir}).csv"
+  log "Using sample sheet ${SampleSheetFile}"
+  time flink_pipe  "${run_dir}/raw" "${OutputBase}/$(basename "${run_dir}").cram" ${NumNodes} "${HeaderFull}" "${Reference}" "${PropertiesFull}" "${SampleSheetFile}"
   log "Finished ${run_dir}"
 done

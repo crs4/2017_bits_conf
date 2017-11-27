@@ -3,6 +3,8 @@
 set -o errexit
 set -o nounset
 
+ProgramJar="/JIC/HOME/cesco/code/bclold/bcl-converter-assembly-0.1.jar"
+
 function log() {
   echo -e $(date +"%F %T") -- $@ >&2
 }
@@ -17,8 +19,8 @@ function error() {
   exit 1
 }
 
-if [ $# -ne 6 ]; then
-  echo "USAGE: $(basename $0) <input run dir> <output dir> <numTasks> <header> <reference> <properties file>" >&2
+if [ $# -ne 7 ]; then
+  echo "USAGE: $(basename $0) <input run dir> <output dir> <numTasks> <header> <reference> <properties file> <sample sheet>" >&2
   exit 1
 fi
 
@@ -30,13 +32,17 @@ if [ ! -r "${6/file:\/\//}" ]; then
   error "Properties parameter ${6} isn't a readable file"
 fi
 
+if [ ! -r "${7/file:\/\//}" ]; then
+  error "Sample sheet parameter ${7} isn't a readable file"
+fi
+
 input="${1%%/}/"
 output="${2%%/}/"
 
 log "Starting flink pipeline" >&2
 
-time flink run -c bclconverter.test /JIC/HOME/cesco/code/bclold/bcl-converter-assembly-0.1.jar  \
-  --root "${input}" --fout "${output}" --numTasks "${3}" --header "${4}" --reference "${5}" --properties "${6}"
+time flink run -c bclconverter.test "${ProgramJar}" \
+  --root "${input}" --fout "${output}" --numTasks "${3}" --header "${4}" --reference "${5}" --properties "${6}" --sample-sheet "${7}"
 exit_code=$?
 
 log "Flink job finished with code ${exit_code}"
