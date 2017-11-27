@@ -10,4 +10,4 @@ if [ ! -f"${BITSCONF}/master" -o ! "${BITSCONF}/slaves" ]; then
   exit 1
 fi
 
-cat "${BITSCONF}/master" "${BITSCONF}/slaves" | xargs -P0 -n1 -I{} ssh {} "${@}"
+cat "${BITSCONF}/master" "${BITSCONF}/slaves" | sort --unique | xargs -P0 -n1 -I{} ssh {} "${@}"
