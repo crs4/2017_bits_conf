@@ -1,7 +1,7 @@
 parallelism.default: 40
 taskmanager.numberOfTaskSlots: 1
 jobmanager.heap.mb: 5000
-taskmanager.heap.mb: 105000
+taskmanager.heap.mb: 100000
 # taskmanager.memory.fraction: 0.7
 #LP taskmanager.tmp.dirs: /home/cesco/dump/tmp/flink-tmp
 taskmanager.tmp.dirs: /scratch1/cesco-flink-tmp:/scratch2/cesco-flink-tmp
