@@ -28,7 +28,7 @@ if [ ! -r "${4/file:\/\//}" ]; then
   error "Header parameter ${4} isn't a readable file"
 fi
 
-if [ ! -r "${6/file:\/\//}" ]; then
+if [ ! -r "${6}" ]; then
   error "Properties parameter ${6} isn't a readable file"
 fi
 
@@ -36,6 +36,7 @@ if [ ! -r "${7/file:\/\//}" ]; then
   error "Sample sheet parameter ${7} isn't a readable file"
 fi
 
+# add trailing slash
 input="${1%%/}/"
 output="${2%%/}/"
 

@@ -40,6 +40,8 @@ function usage_error() {
 
 ########### main ###########
 
+BITSCONF="$(readlink -f "${BITSCONF}")"
+
 if [ $# -le 0 ]; then
   usage_error
 fi
@@ -69,6 +71,8 @@ if [ "${NumNodes}" -le 0 ]; then
   fi
 fi
 
+set -x
+
 HeaderFull="${BITSCONF}/${Header}"
 if [ ! -f "${HeaderFull}" ]; then
   error "Missing header file ${HeaderFull}"
@@ -90,6 +94,6 @@ for run_dir in "${@}"; do
   log "Starting with ${run_dir}"
   SampleSheetFile="${SampleSheetsDir}/$(basename ${run_dir}).csv"
   log "Using sample sheet ${SampleSheetFile}"
-  time flink_pipe  "${run_dir}/raw" "${OutputBase}/$(basename "${run_dir}").cram" ${NumNodes} "${HeaderFull}" "${Reference}" "${PropertiesFull}" "${SampleSheetFile}"
+  time flink_pipe  "${run_dir}/raw" "${OutputBase}/$(basename "${run_dir}").cram" ${NumNodes} "file://${HeaderFull}" "${Reference}" "${PropertiesFull}" "file://${SampleSheetFile}"
   log "Finished ${run_dir}"
 done
