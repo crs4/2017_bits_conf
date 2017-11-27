@@ -18,7 +18,7 @@ function error() {
 }
 
 if [ $# -ne 6 ]; then
-  echo "USAGE: $(basename $0) <root> <fout> <numTasks> <header> <reference> <properties file>" >&2
+  echo "USAGE: $(basename $0) <input run dir> <output dir> <numTasks> <header> <reference> <properties file>" >&2
   exit 1
 fi
 
